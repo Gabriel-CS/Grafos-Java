@@ -49,6 +49,7 @@ public class Grafo {
                     return true;
                 }
             }
+
         }
         System.out.println("O grafo é não direcionado");
         return false;
@@ -140,7 +141,7 @@ public class Grafo {
     }
 
     public void matrizAdjacencia() {
-        int[][] matriz = new int[ordem][ordem];
+        int[][] matriz = new int[ordem+1][ordem];
         if (direcionado) {
             for (Aresta aresta : arestas) {
                 int origem = vertices.indexOf(aresta.getOrigem());
@@ -153,6 +154,7 @@ public class Grafo {
 
             for (int i = 0; i < ordem; i++) {
                 for (int j = 0; j < ordem; j++) {
+                    System.out.println("a" + j + 1);
                     System.out.print(matriz[i][j] + " ");
                 }
                 System.out.println();
@@ -169,13 +171,21 @@ public class Grafo {
             System.out.println("Matriz de adjacência do grafo não direcionado:");
 
             for (int i = 0; i < ordem; i++) {
-                for (int j = 0; j < ordem; j++) {
-                    System.out.print(matriz[i][j] + " ");
+                if(i==0) {
+                    for (int k = 0; k < ordem; k++) {
+                        System.out.print(" ");
+                        System.out.print("a" + (k + 1));
+                    }
+                    System.out.println("");
                 }
-                System.out.println();
-            }
-        }
 
+                System.out.print(this.vertices.get(i).getNome() + " ");
+                for (int j = 0; j < ordem; j++) {
+                        System.out.print(matriz[i][j] + "  ");
+                    }
+                    System.out.println();
+                }
+        }
     }
 
     public void matrizIncidencia() {
@@ -194,6 +204,14 @@ public class Grafo {
 
             System.out.println();
             System.out.println("Matriz de incidência do grafo direcionado:");
+
+            for (int i = 0; i < ordem; i++) {
+                for (int j = 0; j < ordem; j++) {
+                    System.out.println("a" + j + 1);
+                    System.out.print(matriz[i][j] + " ");
+                }
+                System.out.println();
+            }
 
             for (int i = 0; i < ordem; i++) {
                 for (int j = 0; j < coluna; j++) {
